@@ -4,7 +4,6 @@ target/
 .mvn/
 !/.mvn/wrapper/maven-wrapper.jar
 !/.mvn/wrapper/maven-wrapper.properties
-.m2/
 node_modules/
 .DS_Store
 
