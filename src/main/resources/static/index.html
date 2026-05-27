@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>智能课程表安排系统</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+<main class="page">
+    <section class="hero">
+        <div>
+            <p class="eyebrow">AI SCHEDULER</p>
+            <h1>基于 AI 的智能课程表安排系统</h1>
+            <p class="lead">按教师、班级、教室三方互斥约束自动排课，并提供教师/班级视角的课表查询。</p>
+        </div>
+        <div class="actions">
+            <button id="resetDemoBtn">初始化示例数据</button>
+            <button id="generateBtn" class="primary">生成课表</button>
+        </div>
+    </section>
+
+    <section class="panel grid two">
+        <div>
+            <h2>系统概览</h2>
+            <div class="stats">
+                <article><span id="teacherCount">0</span><label>教师</label></article>
+                <article><span id="classCount">0</span><label>班级</label></article>
+                <article><span id="roomCount">0</span><label>教室</label></article>
+                <article><span id="scheduleCount">0</span><label>课表条目</label></article>
+            </div>
+            <p id="statusText" class="status">等待操作</p>
+        </div>
+        <div>
+            <h2>课表查询</h2>
+            <div class="query-form">
+                <label>
+                    查询类型
+                    <select id="queryType">
+                        <option value="class">班级</option>
+                        <option value="teacher">教师</option>
+                    </select>
+                </label>
+                <label>
+                    查询对象
+                    <select id="queryTarget"></select>
+                </label>
+                <button id="queryBtn">查看课表</button>
+            </div>
+        </div>
+    </section>
+
+    <section class="panel">
+        <div class="section-head">
+            <h2 id="timetableTitle">课表展示</h2>
+        </div>
+        <div class="table-wrap">
+            <table id="timetable">
+                <thead>
+                <tr>
+                    <th>节次</th>
+                    <th>周一</th>
+                    <th>周二</th>
+                    <th>周三</th>
+                    <th>周四</th>
+                    <th>周五</th>
+                </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    </section>
+</main>
+<script src="/app.js"></script>
+</body>
+</html>
+

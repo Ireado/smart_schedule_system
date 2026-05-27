@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>大学智能课程表系统</title>
+    <link rel="stylesheet" href="/portal.css">
+</head>
+<body>
+<main class="shell">
+    <section class="login-panel" id="loginPanel">
+        <div class="brand">
+            <p class="eyebrow">UNIVERSITY SCHEDULER</p>
+            <h1>大学智能课程表安排系统</h1>
+            <p>学生、教师、管理员共用同一登录入口，系统按 6 位账号自动识别身份。</p>
+        </div>
+        <form id="loginForm" class="login-card">
+            <h2>登录</h2>
+            <label>
+                账号
+                <input id="accountNo" maxlength="6" placeholder="如 100000 / 200000 / 300001">
+            </label>
+            <label>
+                密码
+                <input id="password" type="password" value="000000" placeholder="000000">
+            </label>
+            <button type="submit" class="primary">登录系统</button>
+            <p class="hint">规则：`1xxxxx` 学生，`2xxxxx` 教师，`3xxxxx` 管理员，默认密码均为 `000000`。</p>
+            <p class="message" id="loginMessage">请先登录</p>
+        </form>
+    </section>
+
+    <section class="app hidden" id="appPanel">
+        <header class="topbar">
+            <div>
+                <p class="eyebrow">SMART TIMETABLE</p>
+                <h2 id="welcomeText">欢迎</h2>
+                <p id="roleText" class="subtle"></p>
+            </div>
+            <div class="top-actions">
+                <button id="logoutBtn">退出登录</button>
+            </div>
+        </header>
+
+        <section class="grid">
+            <article class="card">
+                <h3>系统数据</h3>
+                <div class="stats">
+                    <div><strong id="teacherCount">0</strong><span>教师</span></div>
+                    <div><strong id="studentCount">0</strong><span>学生</span></div>
+                    <div><strong id="classCount">0</strong><span>班级</span></div>
+                    <div><strong id="roomCount">0</strong><span>教室</span></div>
+                    <div><strong id="scheduleCount">0</strong><span>课表记录</span></div>
+                </div>
+                <p id="statusText" class="subtle">等待操作</p>
+            </article>
+
+            <article class="card admin-only hidden" id="adminControls">
+                <h3>管理员操作</h3>
+                <div class="stack">
+                    <button id="resetDemoBtn">生成大学随机数据</button>
+                    <button id="generateBtn" class="primary">执行智能排课</button>
+                </div>
+                <div class="query-box">
+                    <label>
+                        查询类型
+                        <select id="queryType">
+                            <option value="class">班级课表</option>
+                            <option value="teacher">教师课表</option>
+                        </select>
+                    </label>
+                    <label>
+                        查询对象
+                        <select id="queryTarget"></select>
+                    </label>
+                    <button id="queryBtn">查看指定课表</button>
+                </div>
+            </article>
+        </section>
+
+        <section class="card">
+            <div class="section-head">
+                <h3 id="timetableTitle">我的课表</h3>
+            </div>
+            <div class="table-wrap">
+                <table id="timetable">
+                    <thead>
+                    <tr>
+                        <th>节次</th>
+                        <th>周一</th>
+                        <th>周二</th>
+                        <th>周三</th>
+                        <th>周四</th>
+                        <th>周五</th>
+                    </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </section>
+    </section>
+</main>
+<script src="/portal.js"></script>
+</body>
+</html>
+

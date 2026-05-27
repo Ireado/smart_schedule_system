@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>大学智能课程表系统</title>
+    <link rel="stylesheet" href="/ui.css">
+</head>
+<body>
+<main class="page">
+    <section id="loginView" class="login-shell">
+        <div class="hero">
+            <p class="eyebrow">UNIVERSITY TIMETABLE</p>
+            <h1>大学智能课程表系统</h1>
+            <p>学生、教师、管理员共用同一入口。账号为 6 位数字，默认密码统一为 `000000`。</p>
+        </div>
+        <form id="loginForm" class="card login-card">
+            <h2>登录</h2>
+            <label>账号<input id="accountNo" maxlength="6" placeholder="100000 / 200000 / 300001"></label>
+            <label>密码<input id="password" type="password" value="000000" placeholder="000000"></label>
+            <button type="submit" class="primary">登录</button>
+            <p class="tips">规则：1 开头学生，2 开头教师，3 开头管理员。</p>
+            <p id="loginMessage" class="message"></p>
+        </form>
+    </section>
+
+    <section id="appView" class="hidden">
+        <header class="card topbar">
+            <div>
+                <p class="eyebrow">SMART SCHEDULE</p>
+                <h2 id="welcomeText">欢迎</h2>
+                <p id="roleText" class="muted"></p>
+            </div>
+            <button id="logoutBtn">退出登录</button>
+        </header>
+
+        <section class="grid">
+            <article class="card">
+                <h3>系统概览</h3>
+                <div class="stats">
+                    <div><strong id="teacherCount">0</strong><span>教师</span></div>
+                    <div><strong id="studentCount">0</strong><span>学生</span></div>
+                    <div><strong id="classCount">0</strong><span>班级</span></div>
+                    <div><strong id="roomCount">0</strong><span>教室</span></div>
+                    <div><strong id="scheduleCount">0</strong><span>课表记录</span></div>
+                </div>
+                <p id="statusText" class="muted">请先登录</p>
+            </article>
+
+            <article class="card hidden" id="adminPanel">
+                <h3>管理员操作</h3>
+                <div class="stack">
+                    <button id="resetDemoBtn">重新生成随机大学数据</button>
+                    <button id="generateBtn" class="primary">执行学期排课</button>
+                </div>
+                <div class="filters">
+                    <label>专业
+                        <select id="majorFilter"></select>
+                    </label>
+                    <label>班级
+                        <select id="classFilter"></select>
+                    </label>
+                    <label>查看对象
+                        <select id="queryType">
+                            <option value="student">学生个人课表</option>
+                            <option value="teacher">教师学期课表</option>
+                            <option value="class">班级课表总览</option>
+                        </select>
+                    </label>
+                    <label>具体对象
+                        <select id="queryTarget"></select>
+                    </label>
+                    <button id="queryBtn">查询课表</button>
+                </div>
+            </article>
+        </section>
+
+        <section class="card">
+            <div class="section-head">
+                <h3 id="timetableTitle">我的课表</h3>
+                <div class="week-nav">
+                    <button id="prevWeek" title="上一周">&lt;</button>
+                    <span id="weekLabel">第 1 周</span>
+                    <button id="nextWeek" title="下一周">&gt;</button>
+                </div>
+            </div>
+            <div class="table-wrap">
+                <table id="timetable">
+                    <thead>
+                    <tr>
+                        <th>节次</th>
+                        <th>周一</th>
+                        <th>周二</th>
+                        <th>周三</th>
+                        <th>周四</th>
+                        <th>周五</th>
+                    </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </section>
+    </section>
+</main>
+<div id="loadingModal" class="loading-modal hidden">
+    <div class="loading-dialog">
+        <div class="loading-spinner"></div>
+        <p>正在排课中</p>
+    </div>
+</div>
+<script src="/ui.js"></script>
+</body>
+</html>

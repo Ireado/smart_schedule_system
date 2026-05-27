@@ -1,0 +1,31 @@
+spring:
+  application:
+    name: ai-schedule-system
+  datasource:
+    url: ${DB_URL:jdbc:h2:mem:aischedule;MODE=MySQL;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE}
+    username: ${DB_USERNAME:sa}
+    password: ${DB_PASSWORD:}
+    driver-class-name: ${DB_DRIVER:org.h2.Driver}
+  jpa:
+    hibernate:
+      ddl-auto: update
+    open-in-view: false
+    properties:
+      hibernate:
+        format_sql: true
+    show-sql: false
+  h2:
+    console:
+      enabled: true
+
+server:
+  port: 8080
+  error:
+    include-message: always
+
+app:
+  ai:
+    enabled: ${AI_ENABLED:false}
+    endpoint: ${AI_ENDPOINT:}
+    api-key: ${AI_API_KEY:}
+
