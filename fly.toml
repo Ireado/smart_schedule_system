@@ -1,0 +1,33 @@
+app = "ai-schedule-system"
+primary_region = "sin"
+
+[build]
+  dockerfile = "Dockerfile"
+
+[http_service]
+  internal_port = 8080
+  force_https = true
+  auto_stop_machines = true
+  auto_start_machines = true
+  min_machines_running = 0
+
+[[http_service.checks]]
+  method = "GET"
+  path = "/"
+  interval = "15s"
+  timeout = "5s"
+  grace_period = "30s"
+
+[[vm]]
+  memory = "1gb"
+  cpu_kind = "shared"
+  cpus = 1
+
+[env]
+  DB_URL = "jdbc:h2:mem:aischedule;MODE=MySQL;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE"
+  DB_USERNAME = "sa"
+  DB_PASSWORD = ""
+  DB_DRIVER = "org.h2.Driver"
+  AI_ENABLED = "false"
+  AI_ENDPOINT = ""
+  AI_API_KEY = ""
